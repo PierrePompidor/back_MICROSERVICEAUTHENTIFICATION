@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/json" -d '{"email": "pompidor@lirmm.fr", "password": "motdepasse123", "nom":"Pompidor", "prénom":"Pierre", "civilité":"Monsieur"}' http://localhost:3000/signup

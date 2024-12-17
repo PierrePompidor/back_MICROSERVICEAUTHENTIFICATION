@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script>
+        async function connexion(login, password) {
+            const response = await fetch('http://localhost:8888/signin', {
+                method: 'POST',
+                body: JSON.stringify({ email: login, password: password }),
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await response.json();
+            document.querySelector("#message").innerHTML = data.message;
+            document.querySelector("#user").innerHTML = data.userId;
+        }
+        async function déconnexion() {
+            console.log("Dans déconnexion()");
+            const response = await fetch('http://localhost:8888/signout');
+            const data = await response.json();
+            document.querySelector("#message").innerHTML = data.message;
+            document.querySelector("#user").innerHTML = data.userId;
+        }
+        async function action() {
+            const response = await fetch('http://localhost:8888/action');
+            const data = await response.json();
+            document.querySelector("#message").innerHTML = data.message;
+            document.querySelector("#user").innerHTML = data.userId;
+        }
+
+    </script>
+</head>
+<body>
+    Message : <span id="message"></span>
+    <hr/>
+    User : <span id="user"></span>
+    <hr/>
+    <input id="mail" type="text" value="pompidor@lirmm.fr"></input>
+    <input id="pass" type="password" value="motdepasse123"></input>
+    <button onClick="connexion(document.querySelector('#mail').value, document.querySelector('#pass').value)">
+        Connexion
+    </button>
+    <hr>
+    <button onClick="déconnexion()">Déconnexion</button>
+    <hr/>
+    <button onClick="action()"> Pour voir... </button>
+</body>
+</html>
+
